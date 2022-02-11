@@ -139,37 +139,258 @@
 // console.log(calculateTotalPrice('Blaster'));
 // console.log(calculateTotalPrice('Droid'));
 // --------------------------------------------------------------
-const atTheOldToad = {
-  potions: [
-    { name: 'Speed potion', price: 460 },
-    { name: 'Dragon breath', price: 780 },
-    { name: 'Stone skin', price: 520 },
-  ],
-  // Change code below this line
-  getPotions() {
-    return this.potions;
+// const atTheOldToad = {
+//   potions: [
+//     { name: 'Speed potion', price: 460 },
+//     { name: 'Dragon breath', price: 780 },
+//     { name: 'Stone skin', price: 520 },
+//   ],
+//   // Change code below this line
+//   getPotions() {
+//     return this.potions;
+//   },
+//   addPotion(newPotion) {
+//     for (const potion of this.potions) {
+//       if (potion.name === newPotion.name) {
+//         return `Error! Potion ${newPotion.name} is already in your inventory!`;
+//       }
+//     }
+//     this.potions.push(newPotion);
+//   },
+
+//   removePotion(potionName) {
+//     for (let i = 0; i < this.potions.length; i += 1) {
+//       if (potionName === this.potions[i].name) {
+//         this.potions.splice(i, 1);
+//       }
+//     }
+//     return `Potion ${potionName} is not in inventory!`;
+//   },
+
+//   updatePotionName(oldName, newName) {
+//     for (let i = 0; i < this.potions.length; i += 1) {
+//       if (oldName === this.potions[i].name) {
+//         this.potions.splice(i, 1, newName);
+//       }
+//     }
+//   },
+// };
+// ---------------------------------------------------------------------------
+// Write a function - positiveSum:
+// It should accept an array of numbers and return a result of their addition.
+//But you must calculate only positive numbers and omit negative if any presents.
+// For example:
+// positiveSum([2, 4, 6, 8])   // => 20
+// positiveSum([0, -3, 5, 7])  // => 12
+
+// const positiveSum = (array) => {
+//   const newArr = array.filter((item) => item >= 0);
+
+//   return newArr.reduce((sum, arg) => {
+//     return sum + arg;
+//   }, 0);
+// };
+
+// console.log(positiveSum([2, 4, 6, 8])); // => 20
+// console.log(positiveSum([0, -3, 5, 7])); // => 12
+
+//или методом reduce:
+
+// const positiveSum = (args) => {
+//   return args.reduce((total, element) => {
+//     if (element >= 0) {
+//       return total + element;
+//     }
+//     return total;
+//   }, 0);
+// };
+
+//или сокращенно:
+
+// const positiveSum = (args) =>
+//   args.reduce((total, element) => (element >= 0 ? total + element : total), 0);
+
+// --------------------------------------------------------------
+// Write a function – letterCount
+// It accepts two string arguments and returns an integer of the count of occurrences the 2nd argument is found in the first one.
+// If no occurrences can be found, a count of 0 should be returned.
+// For example:
+// letterCount("Maggy", "g") // => 2
+// letterCount("Barry", "b") // => 1
+// letterCount("", "z")      // => 0
+
+// const letterCount = (string1, string2) => {
+//   const firstArray = [...string1.toLowerCase()];
+//   const secondString = string2.toLowerCase();
+//   return firstArray.filter((element) => element === secondString).length;
+// };
+// сокращенный
+// const letterCount = (str, s) => {
+//   const ls = s.toLowerCase();
+//   return str
+//     .toLowerCase()
+//     .split('')
+//     .filter((el) => el === ls).length;
+// };
+
+// function processCall(recipient, onAvailable, onNotAvailable) {
+//   // Имитируем доступеность абонента случайным числом
+//   const isRecipientAvailable = Math.random() > 0.5;
+
+//   if (!isRecipientAvailable) {
+//     onNotAvailable(recipient);
+//     return;
+//   }
+
+//   onAvailable(recipient);
+// }
+
+// function takeCall(name) {
+//   console.log(`Соединяем с ${name}, ожидайте...`);
+//   // Логика принятия звонка
+// }
+
+// function activateAnsweringMachine(name) {
+//   console.log(`Абонент ${name} недоступен, оставьте сообщение.`);
+//   // Логика активации автоответчика
+// }
+
+// function leaveHoloMessage(name) {
+//   console.log(`Абонент ${name} недоступен, записываем голограмму.`);
+//   // Логика записи голограммы
+// }
+// const student = {
+//   name: 'Mango',
+//   email: 'mango@mail.com',
+//   hwResults: [
+//     {
+//       topic: 'HTML',
+//       success: true,
+//     },
+//     {
+//       topic: 'CSS',
+//       success: true,
+//     },
+//     {
+//       topic: 'JavaScript',
+//       success: false,
+//     },
+//   ],
+//   getName() {
+//     return this.name;
+//   },
+//   getEmail() {
+//     return this.email;
+//   },
+//   getHwResults() {
+//     return this.hwResults;
+//   },
+//   addHwResult(topic, success) {
+//     this.hwResults.push({ topic, success });
+//   },
+// };
+
+// class Student {
+//   #name;
+//   #email;
+//   #hwResults = [];
+//   constructor({ name, email }) {
+//     this.#name = name;
+//     this.#email = email;
+//   }
+//   getName() {
+//     return this.#name;
+//   }
+//   getEmail() {
+//     return this.#email;
+//   }
+//   getHwResults() {
+//     return this.#hwResults;
+//   }
+//   addHwResult(topic, success) {
+//     this.#hwResults.push({ topic, success });
+//   }
+// }
+
+// const mango = new Student({ name: 'Mango', email: 'email' });
+// console.log(mango);
+
+// console.log(mango.getName());
+// mango.addHwResult('CSS', true);
+// console.log(mango.getHwResults());
+
+const Student = function (name, email) {
+  const hwResults = [];
+  //   this.name = name;
+  //   this.email = email;
+  this.getName = function () {
+    return name;
+  };
+  this.getEmail = function () {
+    return email;
+  };
+  this.getHwResults = function () {
+    return hwResults;
+  };
+  this.addHwResult = function (topic, success) {
+    hwResults.push({ topic, success });
+  };
+};
+// const poly = new Student('Poly', 'email');
+// console.log(poly);
+// console.log(poly.getEmail());
+// console.log(poly.getName());
+// poly.addHwResult('HTML', true);
+// console.log(poly.getHwResults());
+
+const listOfStudents = [
+  {
+    name: 'John',
+    email: 'john@gmail.com',
   },
-  addPotion(newPotion) {
-    for (const potion of this.potions) {
-      if (potion === newPotion) {
-        return `Error! Potion ${newPotion} is already in your inventory!`;
-      }
-    }
-    return this.potions.push({ newPotion });
+  {
+    name: 'Jane',
+    email: 'jane@gmail.com',
   },
-  removePotion(potionName) {
-    for (let i = 0; i < this.potions.length; i += 1) {
-      if (potionName === this.potions[i]) {
-        this.potions.splice(i, 1);
-      }
-    }
-    return `Potion ${potionName} is not in inventory!`;
+  {
+    name: 'Jack',
+    email: 'jack@gmail.com',
   },
-  updatePotionName(oldName, newName) {
-    for (let i = 0; i < this.potions.length; i += 1) {
-      if (oldName === this.potions[i]) {
-        this.potions.splice(i, 1, newName);
-      }
-    }
+  {
+    name: 'Mary',
+    email: 'mary@gmail.com',
   },
+  {
+    name: 'Robert',
+    email: 'robert@gmail.com',
+  },
+  {
+    name: 'Ann',
+    email: 'ann@gmail.com',
+  },
+  {
+    name: 'Brad',
+    email: 'brad@gmail.com',
+  },
+  {
+    name: 'Lisa',
+    email: 'lisa@gmail.com',
+  },
+  {
+    name: 'Matthew',
+    email: 'matthew@gmail.com',
+  },
+  {
+    name: 'Sandra',
+    email: 'sandra@gmail.com',
+  },
+];
+
+const FrontendSchool = function (students) {
+  const superStudents = students.map(
+    ({ name, email }) => new Student(name, email)
+  );
+  this.printStudentsList = function () {
+    console.log();
+  };
 };
